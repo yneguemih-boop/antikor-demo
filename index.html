@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Демо сервиса записи клиентов на осмотр и антикоррозийную обработку.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Антикор — демо расписания</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <svg class="svg-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 20 5v6c0 5.1-3.1 8.6-8 11-4.9-2.4-8-5.9-8-11V5l8-3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24"><path d="m4 12 2-6h12l2 6M5 18h14a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2Zm1 0v2m12-2v2M7 14h.01M17 14h.01"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v6m0 4h.01"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3h4l1.5 4-2 2c1.2 2.4 3.1 4.3 5.5 5.5l2-2L20 14v4c0 1.7-1.3 3-3 3C9.3 21 3 14.7 3 7c0-1.7 1.3-3 2-4Z"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m-9 0 1 14h10l1-14M10 11v6m4-6v6"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+  </svg>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark"><svg class="icon"><use href="#i-shield"></use></svg></div><div><strong>АНТИКОР</strong><span>демонстрация сервиса</span></div></div>
+      <div class="side-section">РАБОТА</div>
+      <nav class="side-nav" aria-label="Основная навигация">
+        <button class="side-link active" id="nav-schedule"><svg class="icon"><use href="#i-calendar"></use></svg> Расписание</button>
+        <button class="side-link" id="nav-all"><svg class="icon"><use href="#i-list"></use></svg> Все записи <span class="nav-count" id="nav-count">0</span></button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="side-help"><div class="side-help-icon"><svg class="icon"><use href="#i-car"></use></svg></div><strong>Это демо</strong><p>Создайте пару записей и попробуйте календарь. Записи останутся только в этом браузере.</p></div>
+      <button class="reset-link" id="reset-demo">Очистить тестовые записи</button>
+      <div class="side-footer"><span class="online-dot"></span> Демо-режим</div>
+    </aside>
+    <div class="main-column">
+      <header class="topbar">
+        <button class="mobile-menu icon-button" id="mobile-menu" aria-label="Открыть меню"><svg class="icon"><use href="#i-menu"></use></svg></button>
+        <div class="topbar-breadcrumb">Демонстрация <svg class="icon small"><use href="#i-chevron"></use></svg> <strong id="breadcrumb">Расписание</strong></div>
+        <div class="topbar-right"><span class="topbar-date" id="topbar-date"></span><span class="avatar">Д</span></div>
+      </header>
+      <main class="content">
+        <div class="demo-banner"><svg class="icon"><use href="#i-shield"></use></svg><span><strong>Демо-режим.</strong> Тестовые записи хранятся только на этом устройстве. Настоящие данные клиентов сюда не добавляйте.</span></div>
+        <div class="page-head"><div><div class="eyebrow"><span class="eyebrow-line"></span> ПОПРОБУЙТЕ СЕРВИС</div><h1 id="page-title">Расписание</h1><p>Планируйте визиты и держите договорённости под контролем.</p></div><button class="primary-button head-button" id="new-button"><svg class="icon"><use href="#i-plus"></use></svg> Новая запись</button></div>
+        <section class="stats-grid" aria-label="Сводка">
+          <div class="stat-card"><span class="stat-icon orange"><svg class="icon"><use href="#i-calendar"></use></svg></span><span class="stat-label">СЕГОДНЯ ПРИЕДУТ</span><strong id="today-count">0</strong><span class="stat-note" id="today-note"></span></div>
+          <div class="stat-card"><span class="stat-icon blue"><svg class="icon"><use href="#i-clock"></use></svg></span><span class="stat-label">НА ЭТОЙ НЕДЕЛЕ</span><strong id="week-count">0</strong><span class="stat-note">запланированных визитов</span></div>
+          <div class="stat-card"><span class="stat-icon red"><svg class="icon"><use href="#i-alert"></use></svg></span><span class="stat-label">ПРОСРОЧЕНО</span><strong id="overdue-count">0</strong><span class="stat-note">с прошедшей датой</span></div>
+        </section>
+        <section class="week-panel" id="week-panel" aria-label="Календарь недели">
+          <div class="section-heading"><div><h2>Календарь</h2><p id="week-label"></p></div><div class="week-actions"><button class="today-button" id="today-button">Сегодня</button><button class="icon-button bordered" id="prev-week" aria-label="Предыдущая неделя"><span class="chevron-char">‹</span></button><button class="icon-button bordered" id="next-week" aria-label="Следующая неделя"><span class="chevron-char">›</span></button></div></div>
+          <div class="week-grid" id="week-grid"></div>
+        </section>
+        <div class="overdue-alert" id="overdue-alert" hidden><svg class="icon"><use href="#i-alert"></use></svg><span id="overdue-text"></span><button id="show-overdue">Открыть записи <svg class="icon small"><use href="#i-chevron"></use></svg></button></div>
+        <div class="lower-grid">
+          <section class="records-panel">
+            <div class="records-title"><div><div class="section-title-row"><h2 id="records-title"></h2><span class="count-pill" id="visible-count">0</span></div><p id="records-subtitle"></p></div></div>
+            <div class="toolbar"><label class="search-box"><svg class="icon"><use href="#i-search"></use></svg><input id="search" placeholder="Поиск по клиенту или машине" aria-label="Поиск записей"></label><label class="select-box"><svg class="icon"><use href="#i-filter"></use></svg><select id="visit-filter" aria-label="Тип визита"><option value="all">Все услуги</option><option value="inspection">Осмотр</option><option value="treatment">Обработка</option></select></label><label class="select-box"><select id="status-filter" aria-label="Статус"><option value="active">Активные</option><option value="all">Все статусы</option><option value="completed">Завершённые</option></select></label></div>
+            <div class="record-list" id="record-list"></div>
+          </section>
+          <aside class="upcoming-panel"><div class="upcoming-head"><div class="upcoming-icon"><svg class="icon"><use href="#i-clock"></use></svg></div><h2>Скоро приедут</h2><p>Ближайшие визиты</p></div><div class="upcoming-list" id="upcoming-list"></div><button class="upcoming-all" id="upcoming-all">Смотреть все записи <svg class="icon small"><use href="#i-chevron"></use></svg></button></aside>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="modal" hidden>
+    <div class="drawer" role="dialog" aria-modal="true" aria-labelledby="form-title">
+      <div class="drawer-head"><div><div class="drawer-kicker">КАРТОЧКА ВИЗИТА</div><h2 id="form-title">Новая запись</h2><p>Укажите данные клиента и время приезда</p></div><button class="icon-button" id="close-form" aria-label="Закрыть форму"><svg class="icon"><use href="#i-x"></use></svg></button></div>
+      <form class="drawer-form" id="appointment-form">
+        <div class="form-section-title"><span>01</span> Клиент и автомобиль</div>
+        <label class="form-field">Имя клиента <span>*</span><input name="clientName" placeholder="Например, Тестовый клиент" maxlength="120" required autocomplete="off"></label>
+        <label class="form-field">Телефон<input name="phone" type="tel" placeholder="+7 999 123-45-67" maxlength="40" autocomplete="off"></label>
+        <div class="form-two"><label class="form-field">Автомобиль <span>*</span><input name="car" placeholder="Toyota Camry" maxlength="120" required autocomplete="off"></label><label class="form-field">Госномер<input name="plate" placeholder="А123АА" maxlength="30" autocomplete="off"></label></div>
+        <div class="form-section-title"><span>02</span> Визит</div>
+        <div class="visit-choice"><button type="button" class="choice active" id="choice-inspection"><svg class="icon"><use href="#i-list"></use></svg><strong>Осмотр</strong><small>Оценить состояние</small></button><button type="button" class="choice" id="choice-treatment"><svg class="icon"><use href="#i-shield"></use></svg><strong>Обработка</strong><small>Антикор автомобиля</small></button></div>
+        <div class="form-two"><label class="form-field">Дата <span>*</span><input name="date" type="date" required></label><label class="form-field">Время <span>*</span><input name="time" type="time" required></label></div>
+        <label class="form-field">Материал / состав<input name="material" placeholder="Например, Dinitrol 479" maxlength="160" autocomplete="off"></label>
+        <label class="form-field">Статус<select name="status"><option value="scheduled">Запланировано</option><option value="confirmed">Подтверждено</option><option value="completed">Завершено</option><option value="cancelled">Отменено</option></select></label>
+        <label class="form-field">Комментарий<textarea name="comment" placeholder="Что обсудили с клиентом, особые пожелания…" maxlength="2000" rows="4"></textarea></label>
+        <div class="drawer-actions"><button type="button" class="delete-button" id="delete-button" hidden><svg class="icon small"><use href="#i-trash"></use></svg> Удалить</button><button type="button" class="secondary-button" id="cancel-form">Отмена</button><button type="submit" class="primary-button"><svg class="icon small"><use href="#i-check"></use></svg> Сохранить запись</button></div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
